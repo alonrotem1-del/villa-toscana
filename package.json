@@ -1,0 +1,12 @@
+{
+  "name": "villa-toscana-site",
+  "private": true,
+  "description": "Static site. Build model pages and run QA; see CLAUDE.md.",
+  "scripts": {
+    "build": "node scripts/build-models.mjs",
+    "qa": "node scripts/qa.cjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.3"
+  }
+}

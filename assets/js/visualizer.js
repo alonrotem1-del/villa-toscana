@@ -198,7 +198,7 @@
     let s = `<g class="vz-dims">`;
     s += `<line x1="${x}" y1="${y}" x2="${x + w}" y2="${y}" class="vz-dimline"/>`;
     s += `<line x1="${x}" y1="${y - 4}" x2="${x}" y2="${y + 4}" class="vz-dimline"/><line x1="${x + w}" y1="${y - 4}" x2="${x + w}" y2="${y + 4}" class="vz-dimline"/>`;
-    s += `<text x="${x + w / 2}" y="${y + 13}" text-anchor="middle" class="vz-dimtext" style="direction:ltr">${label}</text>`;
+    s += `<text x="${x + w / 2}" y="${y + 13}" text-anchor="middle" class="vz-dimtext">${label}</text>`;
     const hx = x - 4.5;
     s += `<line x1="${hx}" y1="${FY - h}" x2="${hx}" y2="${FY}" class="vz-dimline vz-dimh"/>`;
     s += `<line x1="${hx - 3}" y1="${FY - h}" x2="${hx + 3}" y2="${FY - h}" class="vz-dimline vz-dimh"/>`;
@@ -223,12 +223,15 @@
     const chairX = Math.max(L.end + 62, 292);
     const personX = chairX + 90;
     const SW = Math.max(430, (opts.person ? personX + 66 : chairX + 66));
-    let s = `<svg xmlns="${NS}" viewBox="0 0 ${SW} ${SH}" role="img" aria-label="הדמיית מרפסת בקנה מידה אמיתי" class="vz-svg" style="aspect-ratio:${SW}/${SH}">`;
+    const uid = 'vzs' + (++sceneCount);
+    const what = items.length ? items.map(it => itemName(it) + ', ' + VT.dimLong(it.dim, product(it.pid).shape) + ', ' + finishOf(it.finish).name).join('; ') : 'המרפסת ריקה';
+    let s = `<svg xmlns="${NS}" viewBox="0 0 ${SW} ${SH}" role="img" aria-labelledby="${uid}-t ${uid}-d" class="vz-svg" style="aspect-ratio:${SW}/${SH}">`;
+    s += `<title id="${uid}-t">${opts.title || 'הדמיית מרפסת בקנה מידה אמיתי'}</title><desc id="${uid}-d">מעקה זכוכית בגובה 105 ס״מ${opts.person ? ', דמות בגובה 170 ס״מ' : ''}. על המרפסת: ${what}.</desc>`;
     s += gradDefs() + backgroundSVG(SW, opts) + chairSVG(chairX);
     if (opts.person) s += personSVG(personX);
     L.placed.forEach((pl, i) => { s += planterSVG(pl.it, pl.x, i, opts); });
     if (opts.dims) L.placed.forEach(pl => {
-      const lab = pl.it.dim.split('/').length === 3 ? `${pl.w}×${pl.d}×${pl.h}` : `⌀${pl.w}×${pl.h}`;
+      const lab = pl.it.dim.split('/').length === 3 ? `${pl.w} × ${pl.d} × ${pl.h}` : `⌀${pl.w} × ${pl.h}`;
       s += dimsSVG(pl.x, pl.w, pl.h, pl.d, lab);
     });
     s += rulerSVG();
@@ -238,13 +241,14 @@
 
   /* ---------- interactive widget ---------- */
   const instances = [];
+  let sceneCount = 0;
 
   function optionList() {
     let o = '';
     VT.products.filter(p => !p.noViz).forEach(p => {
       const dims = [...new Set([...(p.sizes || []).map(s => s.dim), ...((p.set && p.set.dims) || [])])];
       o += `<optgroup label="${p.title}${p.code ? ' · ' + p.code : ''}">`;
-      dims.forEach(d => { o += `<option value="${p.id}|${d}">${d} ס״מ</option>`; });
+      dims.forEach(d => { o += `<option value="${p.id}|${d}">${VT.dimLong(d, p.shape)}</option>`; });
       o += '</optgroup>';
     });
     return o;
@@ -269,7 +273,8 @@
           <label class="vz-check"><input type="checkbox" id="${uid}-dims" checked> מידות</label>
           <label class="vz-check"><input type="checkbox" id="${uid}-person" ${st.person ? 'checked' : ''}> דמות בגובה 1.70 מ׳</label>
         </div>
-        <ul class="vz-items" aria-live="polite"></ul>
+        <ul class="vz-items" aria-label="מה על המרפסת"></ul>
+        <p class="sr" role="status" id="${uid}-status"></p>
         <form class="vz-add">
           <label for="${uid}-sel" class="vz-lbl">הוסיפו עציץ למרפסת</label>
           <div class="vz-addrow">
@@ -304,9 +309,9 @@
         const p = product(it.pid); const list = p.finishes.length ? p.finishes : ['C'];
         return `<li>
           <span class="vz-dot" style="background:${finishOf(it.finish).color}"></span>
-          <span class="vz-iname">${itemName(it)} <b class="num">${it.dim}</b></span>
+          <span class="vz-iname">${itemName(it)} <b class="dimv">${VT.dimShort(it.dim)}</b> <small>ס״מ</small></span>
           <select aria-label="גוון" data-i="${i}" class="vz-ifin">${list.map(c => `<option value="${c}" ${c === it.finish ? 'selected' : ''}>${VT.finishes[c].name}</option>`).join('')}</select>
-          <button type="button" class="vz-x" data-rm="${i}" aria-label="הסרה">×</button></li>`;
+          <button type="button" class="vz-x" data-rm="${i}" aria-label="הסרת ${itemName(it)} ${VT.dimShort(it.dim)} מהמרפסת">×</button></li>`;
       }).join('') : '<li class="vz-empty">המרפסת ריקה. בחרו עציץ מהרשימה למטה או לחצו "במרפסת" ליד כל מידה במחירון.</li>';
       const wa = root.querySelector('[data-act="wa"]');
       const text = 'שלום וילה טוסקנה, בניתי הרכב למרפסת:\n' + st.items.map(it => `• ${itemName(it)} ${it.dim} ס״מ, ${finishOf(it.finish).name}`).join('\n') + '\nאשמח לפרטים על מלאי וזמינות.';
@@ -349,6 +354,8 @@
     inst.st.items.push({ pid, dim, finish: fin });
     if (inst.st.items.length > 6) inst.st.items.shift();
     inst.render();
+    const status = inst.root.querySelector('[role="status"]');
+    if (status) status.textContent = `${itemName({ pid })} ${VT.dimShort(dim)} ס״מ נוסף למרפסת`;
   }
 
   /* used by the catalogue's "במרפסת" buttons */
