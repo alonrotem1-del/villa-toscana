@@ -22,7 +22,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="assets/img/hero-tuscan-alley.avif" type="image/avif" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-poster.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap">
@@ -31,7 +31,7 @@
 {"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://alonrotem1-del.github.io/villa-toscana/#store", "name": "וילה טוסקנה", "alternateName": "Villa Toscana", "description": "יבואן עציצים, אדניות, כדי טרקוטה, מזרקות ופסלים בעיצוב איטלקי. תצוגה של 3,500 מ״ר באבן יהודה.", "url": "https://alonrotem1-del.github.io/villa-toscana/", "image": "https://alonrotem1-del.github.io/villa-toscana/assets/og/og-home.jpg", "logo": "https://alonrotem1-del.github.io/villa-toscana/assets/icons/icon-512.png", "telephone": "+972-9-8998646", "email": "info@villa-toscana.co.il", "foundingDate": "1983", "priceRange": "₪₪", "currenciesAccepted": "ILS", "address": {"@type": "PostalAddress", "streetAddress": "בני בנימין 15", "addressLocality": "אבן יהודה", "addressCountry": "IL"}, "sameAs": ["https://www.facebook.com/pages/%D7%95%D7%99%D7%9C%D7%94-%D7%98%D7%95%D7%A1%D7%A7%D7%A0%D7%94-%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%90%D7%99%D7%98%D7%9C%D7%A7%D7%99-%D7%9C%D7%91%D7%99%D7%AA-%D7%95%D7%9C%D7%92%D7%99%D7%A0%D7%94/840737756019836", "https://www.youtube.com/channel/UCtuTBCSHldPnD5quux6Oejw/videos", "https://www.villa-toscana-shop.co.il/"]}
 </script>
 </head>
-<body dir="rtl">
+<body dir="rtl" class="home">
 <a class="skip" href="#main">דלגו לתוכן</a>
 
 <div class="topbar">
@@ -52,7 +52,7 @@
     </a>
     <nav class="nav" id="nav" aria-label="ניווט ראשי">
       <a href="price-list.html">מחירון</a>
-      <a href="price-list.html#balcony">הדמיית מרפסת</a>
+      <a href="studio.html">סטודיו מרפסת</a>
       <a href="price-list.html#fountains">מזרקות</a>
       <a href="price-list.html#terracotta">טרקוטה</a>
       <a href="#outlet">אאוטלט</a>
@@ -69,107 +69,148 @@
   </div>
 </header>
 
+<div class="progress" aria-hidden="true"></div>
+<nav class="dots" aria-label="מסכי העמוד">
+  <a href="#top"><span>פתיחה</span></a>
+  <a href="#numbers"><span>במספרים</span></a>
+  <a href="#collections"><span>קולקציות</span></a>
+  <a href="#studio-teaser"><span>סטודיו מרפסת</span></a>
+  <a href="#best"><span>הנמכרים</span></a>
+  <a href="#fountains"><span>מזרקות</span></a>
+  <a href="#projects"><span>פרויקטים</span></a>
+  <a href="#outlet"><span>אאוטלט</span></a>
+  <a href="#about"><span>המשפחה</span></a>
+  <a href="#visit"><span>ביקור</span></a>
+</nav>
+
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
-    <picture>
-      <source srcset="assets/img/hero-tuscan-alley.avif" type="image/avif">
-      <img class="hero-img" src="assets/img/hero-tuscan-alley.webp" alt="סמטה טוסקנית עם כדי טרקוטה גדולים, עצי זית ופנסים" width="1800" height="1006" fetchpriority="high">
-    </picture>
+  <section class="scr hero2" id="top" aria-labelledby="hero-title">
+    <video class="bg-video" id="hero-video" muted loop playsinline preload="none" poster="assets/video/hero-poster.webp" aria-hidden="true" tabindex="-1">
+      <source src="assets/video/hero-sm.webm" type="video/webm" media="(max-width: 760px)">
+      <source src="assets/video/hero-sm.mp4" type="video/mp4" media="(max-width: 760px)">
+      <source src="assets/video/hero.webm" type="video/webm">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="wrap hero2-in">
+      <p class="eyebrow">אבן יהודה · מאז 1983</p>
+      <h1 id="hero-title"><span class="l1">יופי איטלקי,</span> <span class="l2">בקנה מידה אמיתי</span></h1>
+      <p class="hero2-lead">עציצים, אדניות, כדים, מזרקות ופסלים ישירות מהיבואן. מציבים כל מוצר על מרפסת לפני שקונים, ובאים לבחור ב־3,500 מ״ר של תצוגה.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-light btn-lg" href="studio.html">לסטודיו המרפסת</a>
+        <a class="btn btn-outline-light btn-lg" href="price-list.html">למחירון המלא</a>
+      </div>
+    </div>
+    <div class="wrap scr-foot">
+      <p class="ai-note">וידאו: הנפשה ב־AI של תמונה מאתר וילה טוסקנה</p>
+      <button class="vbtn" type="button" data-video="hero-video"><span>השהיית הווידאו</span></button>
+    </div>
+    <a class="scroll-cue" href="#numbers"><span class="sr">למסך הבא: וילה טוסקנה במספרים</span></a>
+  </section>
+
+  <section class="scr numbers" id="numbers" aria-labelledby="num-title">
     <div class="wrap">
-      <div class="hero-copy">
-        <span class="eyebrow">אבן יהודה · מאז 1983</span>
-        <h1 id="hero-title">יופי איטלקי,<br><em>בקנה מידה אמיתי</em></h1>
-        <p class="hero-lead">עציצים, אדניות, כדי טרקוטה, מזרקות ופסלים ישירות מהיבואן, בלי פערי תיווך. בודקים כל מידה על מרפסת בקנה מידה אמיתי, ובאים לבחור ב־3,500 מ״ר של תצוגה.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-light" href="price-list.html">למחירון העציצים והאדניות</a>
-          <a class="btn btn-outline-light" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=972505241830&amp;text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%91%D7%99%D7%A7%D7%95%D7%A8%20%D7%91%D7%AA%D7%A6%D7%95%D7%92%D7%94">תיאום ביקור בתצוגה</a>
+      <p class="scr-no" aria-hidden="true"><span class="num">01</span> · במספרים</p>
+      <h2 id="num-title" class="statement reveal">יותר מ־40 שנה אנחנו מביאים לחצרות בישראל את מה שרואים בסמטאות של טוסקנה. <span>ישירות מהיצרנים ומהאומנים, בלי פערי תיווך.</span></h2>
+      <ul class="bignums">
+        <li class="reveal"><b class="num">1983</b><span>שנת ההקמה</span></li>
+        <li class="reveal"><b><span class="num">3,500</span><small>מ״ר</small></b><span>תצוגה במרכז אבן יהודה</span></li>
+        <li class="reveal"><b><span class="num">3</span><small>דורות</small></b><span>משפחה אחת, הנכדים כבר בעסק</span></li>
+        <li class="reveal"><b><small>יותר מ־</small><span class="num">400</span></b><span>פריטים בחנות האונליין</span></li>
+      </ul>
+    </div>
+    <p class="giant" aria-hidden="true" lang="en">VILLA TOSCANA · EVEN YEHUDA ·</p>
+  </section>
+
+  <section class="scr collections" id="collections" aria-labelledby="col-title">
+    <div class="wrap col-head">
+      <div>
+        <p class="scr-no" aria-hidden="true"><span class="num">02</span> · קולקציות</p>
+        <h2 id="col-title">כל מה שהופך חצר לפינה איטלקית</h2>
+      </div>
+      <div class="rail-btns">
+        <button class="rbtn" type="button" data-rail="prev" aria-controls="rail" aria-label="לקולקציה הקודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="rbtn" type="button" data-rail="next" aria-controls="rail" aria-label="לקולקציה הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      </div>
+    </div>
+    <ul class="rail" id="rail" aria-label="קולקציות"></ul>
+    <p class="wrap rail-note">התמונות מהחנות האונליין של וילה טוסקנה. החיצים או החלקה הצידה מציגים עוד.</p>
+  </section>
+
+  <section class="scr teaser" id="studio-teaser" aria-labelledby="tz-title" data-teaser>
+    <figure class="tz-stage">
+      <div class="st-host" role="img" aria-label="הדמיה: עציצים אמיתיים על מרפסת בקנה מידה אמיתי, ליד דמות בגובה 170 ס״מ"></div>
+      <figcaption class="ai-note">רקע להמחשה שנוצר ב־AI · המוצרים והמידות אמיתיים</figcaption>
+    </figure>
+    <div class="tz-card">
+      <p class="scr-no" aria-hidden="true"><span class="num">03</span> · סטודיו מרפסת</p>
+      <h2 id="tz-title">מספרים לא עוזרים לדמיין. מרפסת כן.</h2>
+      <p>הצילומים האמיתיים של המוצרים שלנו, על מרפסת עם מעקה רגיל ודמות בגובה 1.70 מ׳. הכל בקנה מידה אמיתי, עם פרספקטיבה. אפשר גם להעלות צילום של המרפסת שלכם.</p>
+      <div class="tz-chips" role="group" aria-label="מה להציב על המרפסת">
+        <button class="chip" type="button" data-set="geo" aria-pressed="true">עציצים גאומטריים</button>
+        <button class="chip" type="button" data-set="urn" aria-pressed="false">כדים קלאסיים</button>
+        <button class="chip" type="button" data-set="trough" aria-pressed="false">סט אדניות</button>
+      </div>
+      <p class="sr st-teaser-status" role="status"></p>
+      <div class="btn-row"><a class="btn btn-light" href="studio.html">לבניית המרפסת שלכם</a></div>
+    </div>
+  </section>
+
+  <section class="scr best" id="best" aria-labelledby="best-title">
+    <div class="wrap">
+      <div class="col-head">
+        <div>
+          <p class="scr-no" aria-hidden="true"><span class="num">04</span> · מהמחירון</p>
+          <h2 id="best-title">הסטים שהכי אוהבים אצלנו</h2>
+          <p class="sub">המחירים לפני מע״מ, באיסוף עצמי מהמחסן באבן יהודה. שלם וקח.</p>
         </div>
-        <p class="hero-note">הביקור בתיאום טלפוני מראש, <span class="num">050-5241830</span></p>
+        <a class="btn btn-ghost" href="price-list.html">לכל המחירון ←</a>
       </div>
+    </div>
+    <div class="best-rail grid" id="featured"></div>
+  </section>
+
+  <section class="scr fountain" id="fountains" aria-labelledby="fn-title">
+    <video class="bg-video" id="fountain-video" muted loop playsinline preload="none" poster="assets/video/fountain-poster.webp" aria-hidden="true" tabindex="-1">
+      <source src="assets/video/fountain-sm.webm" type="video/webm" media="(max-width: 760px)">
+      <source src="assets/video/fountain-sm.mp4" type="video/mp4" media="(max-width: 760px)">
+      <source src="assets/video/fountain.webm" type="video/webm">
+      <source src="assets/video/fountain.mp4" type="video/mp4">
+    </video>
+    <div class="wrap fn-in">
+      <p class="scr-no" aria-hidden="true"><span class="num">05</span> · מזרקות</p>
+      <h2 id="fn-title">אין כמו מים כדי להפיח חיים בגינה</h2>
+      <p>ממזרקת קיר שתולים כמו תמונה, ועד מזרקה מונומנטלית שמחכה במחסן. עם ליווי של הנדסאית נוף ויועצת פנג שואי לפי הצורך.</p>
+      <ul class="fn-tags" id="fn-tags"></ul>
+      <div class="btn-row"><a class="btn btn-light" href="price-list.html#fountains">לכל המזרקות והמחירים</a></div>
+    </div>
+    <div class="wrap scr-foot">
+      <p class="ai-note">וידאו: הנפשה ב־AI של צילום מזרקה מאתר וילה טוסקנה</p>
+      <button class="vbtn" type="button" data-video="fountain-video"><span>השהיית הווידאו</span></button>
     </div>
   </section>
 
-  <section class="proof" aria-label="וילה טוסקנה במספרים">
-    <ul class="wrap">
-      <li><b class="num">1983</b><span>שנת ההקמה, יבוא עיצוב לגינה</span></li>
-      <li><b><span class="num">3,500</span> מ״ר</b><span>תצוגה במרכז אבן יהודה</span></li>
-      <li><b>דור שלישי</b><span>עסק משפחתי, הנכדים כבר בעסק</span></li>
-      <li><b>ישירות</b><span>מהיבואן, בלי פערי תיווך</span></li>
-    </ul>
-  </section>
-
-  <section class="section" id="collections" aria-labelledby="col-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">הקולקציות</span>
-        <h2 id="col-title">כל מה שהופך גינה ומרפסת לפינה איטלקית</h2>
-        <p>אנחנו עובדים ישירות מול יצרנים ואומנים, ומביאים קווי מוצרים שלא תמצאו במקום אחר.</p>
+  <section class="scr projects" id="projects" aria-labelledby="pr-title">
+    <div class="wrap pr-grid">
+      <div class="pr-copy">
+        <p class="scr-no" aria-hidden="true"><span class="num">06</span> · פרויקטים</p>
+        <h2 id="pr-title">משתתפים בעשרות פרויקטים בכל שנה</h2>
+        <p>מהפרויקט האחרון: מלון לאונרדו ארט בכיכר אתרים בתל אביב. סיפקנו 65 מעמדים וכדים, והמעצב צבע את הכדים, שהיו במקור באפור בטון, בצבע שמאפיין את הקונספט של המלון.</p>
       </div>
-      <div class="cat-grid">
-        <a class="cat wide" href="price-list.html">
-          <img src="assets/img/set-round-dusk.webp" alt="שלושה עציצי בטון עגולים גבוהים בשקיעה" loading="lazy">
-          <div class="cat-body"><span class="from">מ־<span class="num">110</span> ₪ · מחירון מלא</span><h3>עציצים ואדניות</h3><p>בטון, פיבר סטון, שחור ואפור כהה. סטים במחיר משתלם.</p></div>
-        </a>
-        <a class="cat wide" href="price-list.html#fountains">
-          <img src="assets/img/fountain-night.webp" alt="מזרקה איטלקית מוארת בכיכר בלילה" loading="lazy">
-          <div class="cat-body"><span class="from">מ־<span class="num">950</span> ₪</span><h3>מזרקות</h3><p>יבואנים של מזרקות כבר 40 שנה, מקיר ועד מזרקות מונומנטליות.</p></div>
-        </a>
-        <a class="cat" href="price-list.html#terracotta">
-          <img src="assets/img/terracotta-alley.webp" alt="כדי ועציצי טרקוטה בסמטה" loading="lazy">
-          <div class="cat-body"><span class="from">סטים מ־<span class="num">399</span> ₪</span><h3>כדי טרקוטה</h3><p>אדומה, ענתיקה, חומה ולבנה.</p></div>
-        </a>
-        <a class="cat" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=972505241830&amp;text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A4%D7%A1%D7%9C%D7%99%D7%9D%20%D7%9C%D7%92%D7%99%D7%A0%D7%94">
-          <img src="assets/img/sculptures-yard.webp" alt="פסלים קלאסיים בחצר התצוגה" loading="lazy">
-          <div class="cat-body"><span class="from">תמונות ומחירים בוואטסאפ</span><h3>פסלים</h3><p>מלאכים, דמויות ופסלי גן קלאסיים.</p></div>
-        </a>
-        <a class="cat" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=972505241830&amp;text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%9B%D7%93%D7%99%20%D7%A4%D7%99%D7%91%D7%A8%20%D7%A1%D7%98%D7%95%D7%9F">
-          <img src="assets/img/fiberstone-garden.webp" alt="אדניות פיבר סטון אפורות עם צמחייה" loading="lazy">
-          <div class="cat-body"><span class="from">תמונות ומחירים בוואטסאפ</span><h3>פיבר סטון</h3><p>קל משקל, חזק ועמיד. נראה כמו אבן.</p></div>
-        </a>
-        <a class="cat" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=972505241830&amp;text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%AA%D7%90%D7%95%D7%A8%D7%94%20%D7%9C%D7%92%D7%99%D7%A0%D7%94">
-          <img src="assets/img/lighting-avenue.webp" alt="עמודי תאורה קלאסיים לאורך שביל" loading="lazy">
-          <div class="cat-body"><span class="from">תמונות ומחירים בוואטסאפ</span><h3>תאורה לגינה</h3><p>עמודי תאורה ופנסים בסגנון איטלקי.</p></div>
-        </a>
-      </div>
+      <figure class="pr-a reveal"><img src="assets/img/project-leonardo.webp" alt="כד ורוד עם צמח במרפסת מלון לאונרדו ארט מול הים" loading="lazy"><figcaption>מלון לאונרדו ארט, תל אביב</figcaption></figure>
+      <figure class="pr-b reveal"><img src="assets/img/project-courtyard.webp" alt="חצר מרוצפת עם מזרקה ועציצים" loading="lazy"><figcaption>חצר עם מזרקה ועציצים</figcaption></figure>
+      <figure class="pr-c reveal"><img src="assets/img/lifestyle-olive-white.webp" alt="עץ זית באדנית לבנה גדולה" loading="lazy"><figcaption>אדנית לעץ זית</figcaption></figure>
+      <figure class="pr-d reveal"><img src="assets/img/project-garden.webp" alt="גינה מעוצבת עם מזרקה" loading="lazy"><figcaption>גינה פרטית</figcaption></figure>
+      <figure class="pr-e reveal"><img src="assets/img/fountain-trailer.webp" alt="עגלת הובלה עמוסה במזרקות" loading="lazy"><figcaption>הובלת מזרקות ללקוח</figcaption></figure>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="bal-title">
-    <div class="wrap split">
-      <div class="split-copy">
-        <span class="eyebrow">חדש באתר</span>
-        <h2 id="bal-title">איך זה ייראה אצלכם במרפסת?</h2>
-        <p>קשה לדמיין מה זה 80/23/40 ס״מ. לכן בנינו הדמיית מרפסת שבה כל עציץ מצויר בקנה מידה אמיתי, ליד מעקה בגובה 105 ס״מ, כיסא תלוי ודמות בגובה 1.70 מ׳.</p>
-        <ul class="ticks">
-          <li>בוחרים כל מידה מהמחירון ורואים אותה על המרפסת</li>
-          <li>משווים בין כמה עציצים זה לצד זה</li>
-          <li>שולחים לנו את ההרכב בוואטסאפ בלחיצה</li>
-        </ul>
-        <div class="btn-row"><a class="btn btn-solid" href="price-list.html#balcony">לבניית המרפסת שלכם</a></div>
-      </div>
-      <div id="home-viz" aria-label="דוגמה: שתי אדניות 80/23/40 ס״מ על מרפסת"></div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="best-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">מהמחירון</span>
-        <h2 id="best-title">הסטים שהכי אוהבים אצלנו</h2>
-        <p>המחירים לפני מע״מ, באיסוף עצמי מהמחסן באבן יהודה. שלם וקח.</p>
-      </div>
-      <div class="grid" id="featured"></div>
-      <div class="btn-row" style="margin-top:1.6rem"><a class="btn btn-ghost" href="price-list.html">לכל המחירון, יותר מ־40 דגמים ←</a></div>
-    </div>
-  </section>
-
-  <section class="section outlet" id="outlet" aria-labelledby="out-title">
-    <div class="wrap split flip">
-      <div class="split-media"><img src="assets/img/outlet-flowers.webp" alt="עציץ עם פרחים לבנים בתצוגה" loading="lazy"></div>
-      <div class="split-copy">
-        <span class="eyebrow">משהו טוב קורה בוילה טוסקנה</span>
-        <h2 id="out-title" class="outlet-tag">OUTLET <small>עודפים</small></h2>
-        <p>במהלך השנים אספנו פריטים מיוחדים, ועכשיו הגיע הזמן לנקות את המדפים. פתחנו מרכז OUTLET של עודפים ופריטים מהתצוגה, במחירים מפתיעים. זה הפתרון המושלם לשדרג את הבית והגינה בכסף קטן.</p>
+  <section class="scr outlet2" id="outlet" aria-labelledby="out-title">
+    <p class="giant giant-out" aria-hidden="true" lang="en">OUTLET</p>
+    <div class="wrap out-grid">
+      <div class="out-copy">
+        <p class="scr-no" aria-hidden="true"><span class="num">07</span> · אאוטלט</p>
+        <h2 id="out-title"><span lang="en">OUTLET</span> עודפים ופריטי תצוגה</h2>
+        <p>במהלך השנים אספנו פריטים מיוחדים, ועכשיו הגיע הזמן לפנות את המדפים. במרכז ה־OUTLET תמצאו עודפים ופריטים מהתצוגה במחירים מפתיעים.</p>
         <dl class="facts">
           <div><dt>שיטת המכירה</dt><dd>שלם וקח</dd></div>
           <div><dt>שעות פתיחה</dt><dd><span class="num">9:00–13:00</span></dd></div>
@@ -180,99 +221,55 @@
           <a class="btn btn-outline-light" href="tel:0505583744">לילי <span class="num">050-5583744</span></a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="fn-title" style="padding-top:clamp(3.5rem,2.5rem + 4vw,6.5rem)">
-    <div class="wrap split">
-      <div class="split-copy">
-        <span class="eyebrow">מזרקות</span>
-        <h2 id="fn-title">אין כמו מים כדי להפיח חיים בגינה</h2>
-        <p>בוילה טוסקנה תמצאו מבחר אלמנטים של מים, מליווי צמוד של הנדסאית נוף ויועצת פנג שואי במידת הצורך, ועד ייעוץ של מעצבת מקצועית בגינה שלכם.</p>
-        <ul class="ticks">
-          <li>מזרקות איטלקיות מ־<span class="num">3,500</span> ₪</li>
-          <li>מזרקת קיר כולל משאבה, <span class="num">950</span> ₪ במבצע</li>
-          <li>אספקה מיידית מהמלאי</li>
-        </ul>
-        <div class="btn-row"><a class="btn btn-solid" href="price-list.html#fountains">לכל המזרקות והמחירים</a></div>
-      </div>
-      <div class="split-media"><img src="assets/img/fountain-garden.webp" alt="מזרקה איטלקית דו־קומתית בגינה ירוקה" loading="lazy"></div>
-    </div>
-  </section>
-
-  <section class="section" id="projects" aria-labelledby="pr-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">פרויקטים</span>
-        <h2 id="pr-title">משתתפים בעשרות פרויקטים בכל שנה</h2>
-        <p>מהפרויקט האחרון: מלון לאונרדו ארט בכיכר אתרים בתל אביב, מלון בקונספט צעיר. סיפקנו לו 65 מעמדים וכדים, והמעצב צבע את הכדים שלנו, שהיו במקור באפור בטון, בצבע שמאפיין את הקונספט.</p>
-      </div>
-      <div class="mosaic">
-        <figure><img src="assets/img/project-leonardo.webp" alt="כד ורוד עם צמח במרפסת מלון לאונרדו ארט מול הים" loading="lazy"><figcaption>מלון לאונרדו ארט, תל אביב</figcaption></figure>
-        <figure><img src="assets/img/project-courtyard.webp" alt="חצר מרוצפת עם מזרקה ועציצים" loading="lazy"><figcaption>חצר עם מזרקה ועציצים</figcaption></figure>
-        <figure><img src="assets/img/lifestyle-olive-white.webp" alt="עץ זית באדנית לבנה גדולה" loading="lazy"><figcaption>אדנית GA30-1839 לעץ זית</figcaption></figure>
-        <figure><img src="assets/img/project-garden.webp" alt="גינה מעוצבת עם מזרקה" loading="lazy"><figcaption>גינה פרטית</figcaption></figure>
-        <figure><img src="assets/img/fountain-trailer.webp" alt="עגלת הובלה עם מזרקות" loading="lazy"><figcaption>הובלת מזרקות ללקוח</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about" aria-labelledby="ab-title">
-    <div class="wrap split flip">
-      <div class="split-media"><img src="assets/img/family-itzik-omri.webp" alt="סבא איציק והנכד עומרי מרימים כוסית" loading="lazy"></div>
-      <div class="split-copy">
-        <span class="eyebrow">קצת עלינו</span>
-        <h2 id="ab-title">חברה ותיקה עם דם צעיר</h2>
-        <p>וילה טוסקנה מאבן יהודה מתמחה ביבוא פריטי אופנה לגינה כבר משנת 1983. אנחנו משלבים Business and pleasure, וזה מה שמוביל אותנו קדימה. אנחנו יודעים להתחבר ליצרנים ולאומנים המיוחדים ביותר.</p>
-        <p>היום הדור השלישי כבר בעסק. עומרי, הנכד הבכור, הצטרף ראשון, ואחריו יגיעו עוד חמישה נכדים ונכדה. אנחנו מתמחים בקו מוצרים מיוחד שלא תמצאו בשום מקום אחר.</p>
-        <blockquote class="quote">״שירות ואמינות מעל הכל, זה שם המשחק.״</blockquote>
-        <p class="quote-by">סבא איציק, וילה טוסקנה</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="st-title">
-    <div class="wrap stories">
-      <div>
-        <span class="eyebrow">לקוחות מספרים</span>
-        <h2 id="st-title" class="sr">המלצות לקוחות</h2>
-        <blockquote class="quote" style="margin-top:1rem">״חג שמח ותודה רבה על השירות הטוב! הגנן שלי התרשם מאוד מאוד מאיכות האדניות. וגם משירות מעולה.״</blockquote>
-        <p class="quote-by">יעל גבריאלי</p>
-      </div>
-      <article class="story-card">
+      <article class="out-story reveal">
         <img src="assets/img/customer-painted-pots.webp" alt="ארבעה עציצים לבנים שלקוח צבע בעצמו, עם צמחים" loading="lazy">
         <div>
-          <h3 style="font-size:1.3rem">לתמונה הזו יש סיפור</h3>
-          <p>לקוח חכם שהגיע לתצוגה ניגש לאזור האאוטלט. הוא בחר 4 עציצים מחומרים שונים, בצורות שונות ובצבעים שונים, ובבית צבע את כולם. זו התוצאה, שהוא שלח אלינו.</p>
+          <h3>לתמונה הזו יש סיפור</h3>
+          <p>לקוח חכם ניגש לאזור האאוטלט ובחר ארבעה עציצים מחומרים, צורות וצבעים שונים. בבית הוא צבע את כולם, ושלח לנו את התוצאה.</p>
         </div>
       </article>
     </div>
   </section>
 
-  <section class="section" id="visit" aria-labelledby="vi-title">
+  <section class="scr family" id="about" aria-labelledby="ab-title">
+    <div class="wrap fam-grid">
+      <figure class="fam-ph reveal"><img src="assets/img/family-itzik-omri.webp" alt="סבא איציק והנכד עומרי מרימים כוסית" loading="lazy"></figure>
+      <div class="fam-copy">
+        <p class="scr-no" aria-hidden="true"><span class="num">08</span> · המשפחה</p>
+        <h2 id="ab-title">חברה ותיקה עם דם צעיר</h2>
+        <blockquote class="quote big-quote">״שירות ואמינות מעל הכל, זה שם המשחק.״</blockquote>
+        <p class="quote-by">סבא איציק, מייסד וילה טוסקנה</p>
+        <p>מאז 1983 אנחנו מייבאים פריטי אופנה לגינה ויודעים להתחבר ליצרנים ולאומנים המיוחדים ביותר. היום הדור השלישי כבר בעסק: עומרי, הנכד הבכור, הצטרף ראשון, ואחריו יגיעו עוד חמישה נכדים ונכדה.</p>
+        <figure class="testi">
+          <blockquote>״הגנן שלי התרשם מאוד מאוד מאיכות האדניות. וגם משירות מעולה.״</blockquote>
+          <figcaption>יעל גבריאלי, לקוחה</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="scr visit2" id="visit" aria-labelledby="vi-title">
     <div class="wrap visit">
       <div>
-        <div class="sec-head">
-          <span class="eyebrow">ביקור וצור קשר</span>
-          <h2 id="vi-title">בואו לראות את התצוגה</h2>
-          <p>3,500 מ״ר במרכז אבן יהודה, מול הדואר. הביקור בתיאום טלפוני בלבד ומראש.</p>
-        </div>
+        <p class="scr-no" aria-hidden="true"><span class="num">09</span> · ביקור</p>
+        <h2 id="vi-title" class="visit-title">בואו לראות את זה <span>במציאות.</span></h2>
+        <p class="sub">3,500 מ״ר במרכז אבן יהודה, מול הדואר. הביקור בתיאום טלפוני מראש.</p>
         <ul class="contact-list">
           <li><span>איציק, נייד</span><a href="tel:0505241830" class="num">050-5241830</a></li>
           <li><span>לילי, נייד</span><a href="tel:0505583744" class="num">050-5583744</a></li>
           <li><span>הדס, נייד</span><a href="tel:0515526881" class="num">051-5526881</a></li>
           <li><span>משרד</span><a href="tel:098998646" class="num">09-8998646</a></li>
-          <li><span>פקס</span><span class="num">09-8999392</span></li>
           <li><span>דוא״ל</span><a href="mailto:info@villa-toscana.co.il">info@villa-toscana.co.il</a></li>
         </ul>
       </div>
       <div class="visit-card">
         <h3>וילה טוסקנה</h3>
-        <p>רחוב בני בנימין 15, אבן יהודה<br><span style="color:var(--ink-2)">מרכז אבן יהודה, מול הדואר</span></p>
+        <p>רחוב בני בנימין 15, אבן יהודה<br><span class="muted">מרכז אבן יהודה, מול הדואר</span></p>
         <dl class="hours">
           <dt>תצוגה</dt><dd>בתיאום טלפוני מראש</dd>
           <dt>אאוטלט</dt><dd><span class="num">9:00–13:00</span></dd>
           <dt>שבת</dt><dd>סגור</dd>
+          <dt>פקס</dt><dd><span class="num">09-8999392</span></dd>
         </dl>
         <div class="btn-row">
           <a class="btn btn-solid" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%91%D7%A0%D7%99%20%D7%91%D7%A0%D7%99%D7%9E%D7%99%D7%9F%2015%20%D7%90%D7%91%D7%9F%20%D7%99%D7%94%D7%95%D7%93%D7%94&amp;navigate=yes">ניווט ב־Waze</a>
@@ -297,7 +294,8 @@
       <h4>באתר</h4>
       <ul>
         <li><a href="price-list.html">מחירון עציצים ואדניות</a></li>
-        <li><a href="price-list.html#balcony">הדמיית מרפסת</a></li>
+        <li><a href="studio.html">סטודיו מרפסת</a></li>
+        <li><a href="price-list.html#balcony">שרטוט מרפסת בקנה מידה</a></li>
         <li><a href="price-list.html#fountains">מזרקות</a></li>
         <li><a href="price-list.html#terracotta">כדי טרקוטה</a></li>
         <li><a href="#outlet">אאוטלט עודפים</a></li>
@@ -327,5 +325,6 @@
 <script src="assets/js/data.js"></script>
 <script src="assets/js/visualizer.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/studio.js"></script>
 </body>
 </html>

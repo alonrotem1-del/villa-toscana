@@ -219,6 +219,54 @@ window.VT = (function () {
     { img: 'f-giant.webp', title: 'מזרקה מונומנטלית עם מתזים ומשאבה פנימית', code: '', dims: 'קוטר 420 · גובה 250 ס״מ · 3,700 ק״ג', price: 159000, note: 'במחסן באבן יהודה. הובלה והתקנה: 18,000 ₪' }
   ];
 
+  /* Home page collections rail. Photos come from villa-toscana-shop.co.il; `count` is the number of
+     items in that shop category when the photos were collected (Nov 2026). */
+  const SHOP = 'https://www.villa-toscana-shop.co.il/home-garden/';
+  const collections = [
+    { title: 'אדניות ועציצים', img: 'shop/troughs-concrete.webp', alt: 'שלוש אדניות בטון מלבניות עם צמחייה בחצר מרוצפת', href: 'price-list.html', note: 'המחירון המלא, עם מידות והדמיה' },
+    { title: 'כדים לגינה', img: 'shop/white-urns-deck.webp', alt: 'שלושה כדים לבנים גבוהים עם עצי זית על דק עץ', href: SHOP + 'garden-pots/', count: 89 },
+    { title: 'כדים איטלקיים מאבן', img: 'shop/urn-lion.webp', alt: 'כד אבן איטלקי עם ראש אריה בחצר עם בוגנוויליה', href: SHOP + 'garden-pots/%d7%9b%d7%93%d7%99%d7%9d-%d7%90%d7%99%d7%98%d7%9c%d7%a7%d7%99%d7%99%d7%9d-%d7%9e%d7%a9%d7%99%d7%a9-%d7%92%d7%a8%d7%95%d7%a1-%d7%a2%d7%9d-%d7%a6%d7%9e%d7%a0%d7%98/', count: 11 },
+    { title: 'כדי טרקוטה', img: 'shop/terracotta-amphora.webp', alt: 'כד טרקוטה ענק בהיר ליד ספסל ברזל בחצר אבן', href: 'price-list.html#terracotta', note: 'סטים במחירון' },
+    { title: 'מזרקות', img: 'shop/fountain-garden.webp', alt: 'מזרקה לבנה בת שלוש קומות בין שיחים ירוקים', href: 'price-list.html#fountains', note: 'מזרקות במחירון' },
+    { title: 'פסלים', img: 'shop/lion-sculpture.webp', alt: 'פסל אריה איטלקי מאבן אפורה בכניסה לחצר', href: SHOP + 'home-garden-sculptures/', count: 75 },
+    { title: 'קורטן חלודה', img: 'shop/corten-troughs.webp', alt: 'שלוש אדניות קורטן בגבהים שונים עם צמחייה על דק', href: SHOP + '%d7%9b%d7%93%d7%99%d7%9d-%d7%95%d7%90%d7%93%d7%a0%d7%99%d7%95%d7%aa-%d7%a7%d7%95%d7%a8%d7%98%d7%9f-%d7%97%d7%9c%d7%95%d7%93%d7%94/', count: 7 },
+    { title: 'כדי גלזורה', img: 'shop/glazed-turquoise.webp', alt: 'שני עציצי גלזורה בצבע טורקיז על שולחן עץ', href: SHOP + 'garden-pots/%d7%9b%d7%93-%d7%92%d7%9c%d7%96%d7%95%d7%a8%d7%94/', count: 6 }
+  ];
+
+  /* Balcony Studio (studio.html and the home teaser).
+     Scenes are AI-made backdrops, calibrated by hand in their own pixels:
+       railTop / base = y of the railing top and of its foot on the floor, refCm = railing height,
+       horizon = eye level. Floor scale at y: s0 * (y - horizon) / (base - horizon), s0 = (base - railTop) / refCm.
+     Products are the shop's real photos with the background removed, never redrawn.
+       cut: { img, w, h, px, at } -> in that file, the product at size `at` is `px` pixels tall;
+       other sizes of the same model scale by height. */
+  const studio = {
+    scenes: [
+      { id: 'telaviv', name: 'מרפסת מול העיר', img: 'studio/balcony-telaviv.webp', w: 1344, h: 752, railTop: 272, base: 521, refCm: 105, horizon: 318, rulerX: 1262 },
+      { id: 'slats', name: 'מרפסת עם כיסא תלוי', img: 'studio/balcony-slats.webp', w: 1344, h: 752, railTop: 315, base: 572, refCm: 105, horizon: 325, rulerX: 420 },
+      { id: 'patio', name: 'פטיו בין עצי זית', img: 'studio/patio-olive.webp', w: 1344, h: 752, railTop: 332, base: 510, refCm: 100, horizon: 243, rulerX: 1250 },
+      { id: 'rooftop', name: 'גג בלילה', img: 'studio/rooftop-night.webp', w: 1344, h: 752, railTop: 327, base: 468, refCm: 105, horizon: 342, rulerX: 1215 }
+    ],
+    items: [
+      { id: 'ga2630', pid: 'ga2630', finish: 'B',
+        cuts: { '53/72': { img: 'studio/ga30-2630-l.webp', w: 585, h: 900, px: 900 }, '31/42': { img: 'studio/ga30-2630-s.webp', w: 459, h: 672, px: 672 } } },
+      { id: 'urn262', code: 'GA30-262', title: 'כד בצבע ברונזה', shape: 'cyl', finishName: 'ברונזה',
+        sizes: [{ dim: '46/76', price: 390, vat: true }],
+        shop: 'https://www.villa-toscana-shop.co.il/product/%d7%9b%d7%93-%d7%91%d7%a6%d7%91%d7%a2-%d7%91%d7%a8%d7%95%d7%a0%d7%96%d7%94-ga30-262/',
+        cut: { img: 'studio/urn-bronze-ga30-262.webp', w: 452, h: 833, px: 833, at: '46/76' } },
+      { id: 'urn314', code: 'GA30-314', title: 'כד קלאסי מעוטר', shape: 'cyl', finishName: 'אפור בטון',
+        sizes: [{ dim: '57/67', price: 590, vat: true }],
+        shop: 'https://www.villa-toscana-shop.co.il/product/%d7%9b%d7%93-%d7%a4%d7%99%d7%99%d7%91%d7%a8%d7%a1%d7%98%d7%95%d7%9f-%d7%9e%d7%a2%d7%95%d7%a6%d7%91-%d7%9c%d7%92%d7%99%d7%a0%d7%94-%d7%93%d7%92%d7%9d/',
+        cut: { img: 'studio/urn-classic-ga30-314.webp', w: 563, h: 692, px: 692, at: '57/67' } },
+      { id: 'p7', pid: 'p7', set: true, finishName: 'לבן (מהחנות האונליין)',
+        cut: { img: 'studio/troughs-81015.webp', w: 649, h: 600, px: 303, at: '110/40/50' } },
+      { id: 'ga2813', pid: 'ga2813', finish: 'C',
+        cut: { img: 'studio/ga30-2813.webp', w: 205, h: 236, px: 236, at: '37/40' } },
+      { id: 'ga1474', pid: 'ga1474', finish: 'B',
+        cut: { img: 'studio/ga30-1474.webp', w: 186, h: 161, px: 161, at: '32/25' } }
+    ]
+  };
+
   const contact = {
     phone: '09-8998646', fax: '09-8999392',
     people: [
@@ -283,6 +331,6 @@ window.VT = (function () {
   function slug(p) { return p.slug || (p.code ? p.code.toLowerCase().replace(/[^a-z0-9]+/g, '-') : p.id); }
   function modelUrl(p) { return BASE + 'models/' + slug(p) + '.html'; }
 
-  return { finishes, cats, products, compositions, terracotta, fountains, contact, parseDim, waLink, fmt, IMG, BASE,
+  return { finishes, cats, products, compositions, terracotta, fountains, collections, studio, contact, parseDim, waLink, fmt, IMG, BASE,
     dimLabels, dimShort, dimLong, dimLegend, minPrice, setSavings, slug, modelUrl };
 })();

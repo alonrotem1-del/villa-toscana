@@ -8,8 +8,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = 8799;
-const PAGES = ['index.html', 'price-list.html', 'models/p9.html', 'models/ga30-2630.html'];
-const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.png': 'image/png', '.jpg': 'image/jpeg' };
+const PAGES = ['index.html', 'studio.html', 'price-list.html', 'models/p9.html', 'models/ga30-2630.html'];
+const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.png': 'image/png', '.jpg': 'image/jpeg', '.mp4': 'video/mp4', '.webm': 'video/webm' };
 
 const server = http.createServer((req, res) => {
   const url = decodeURIComponent(req.url.split('?')[0]);

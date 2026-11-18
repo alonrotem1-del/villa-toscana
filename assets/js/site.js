@@ -67,6 +67,7 @@
     if (ex) ex.qty++; else cart.push(Object.assign({ qty: 1 }, item));
     cartSave(); toast(`${item.title} נוסף לרשימת ההזמנה`);
   }
+  window.VTcartAdd = cartAdd;
 
   const dlg = document.createElement('dialog');
   dlg.className = 'drawer'; dlg.id = 'cart'; dlg.setAttribute('aria-labelledby', 'cart-title');
@@ -247,11 +248,87 @@
     }
   });
 
-  /* ---------- home page ---------- */
-  const homeViz = $('#home-viz');
-  if (homeViz) VTViz.mount(homeViz, { interactive: false, person: true });
-  const featured = $('#featured');
-  if (featured) featured.innerHTML = VT.products.filter(p => p.featured).slice(0, 6).map(card).join('');
+  /* ---------- home page: full-screen chapters ---------- */
+  if (document.body.classList.contains('home')) initHome();
+
+  /* a lighter showcase card for the home page: photo, name, price from, saving */
+  function showCard(p) {
+    const from = VT.minPrice(p), sv = VT.setSavings(p);
+    const hs = (p.sizes || []).map(s => VT.parseDim(s.dim).h).concat(p.set ? p.set.dims.map(d => VT.parseDim(d).h) : []);
+    const n = new Set((p.sizes || []).map(s => s.dim).concat(p.set ? p.set.dims : [])).size;
+    return `<a class="show-card reveal" href="${VT.modelUrl(p)}">
+        <span class="sc-ph${isPhoto(p.img) ? ' cover' : ''}"><img src="${VT.IMG + p.img}" alt="" loading="lazy" style="view-transition-name:m-${p.id}"></span>
+        <span class="sc-b">
+          ${sv ? `<span class="sc-flag">סט משתלם · חוסכים <span class="num">${sv.pct}%</span></span>` : p.set ? '<span class="sc-flag">סט משתלם</span>' : ''}
+          <h3>${p.title}${p.code ? ` <bdi lang="en" class="tc-code">${p.code}</bdi>` : ''}</h3>
+          <span class="sc-meta">${n} מידות, עד גובה <span class="num">${Math.max(...hs)}</span> ס״מ</span>
+          ${from != null ? `<span class="sc-p">החל מ־<b>${priceLabel(from)}</b> <small>לפני מע״מ</small></span>` : ''}
+        </span></a>`;
+  }
+
+  function initHome() {
+    const hdr = $('.site-header'), hero = $('#top');
+    // the header floats over the hero film, then turns solid (solid without JS)
+    if (hdr && hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => hdr.classList.toggle('over', e.isIntersecting), { rootMargin: '-72px 0px 0px 0px', threshold: 0 })
+        .observe(hero);
+    }
+
+    // chapter dots follow the screen in view
+    const dots = $$('.dots a');
+    if (dots.length && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        dots.forEach(d => { if (d.getAttribute('href') === '#' + e.target.id) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      }), { rootMargin: '-48% 0px -48% 0px' });
+      dots.forEach(d => { const s = $(d.getAttribute('href')); if (s) io.observe(s); });
+    }
+
+    // films: play only in view, never with reduced motion or data saver, always pausable
+    const saveData = navigator.connection && navigator.connection.saveData;
+    $$('[data-video]').forEach(btn => {
+      const v = document.getElementById(btn.dataset.video); if (!v) return;
+      let userPaused = reduceMotion || saveData, inView = false;
+      const label = () => { $('span', btn).textContent = v.paused ? 'הפעלת הווידאו' : 'השהיית הווידאו'; btn.classList.toggle('paused', v.paused); };
+      const sync = () => {
+        if (inView && !userPaused) { const p = v.play(); if (p && p.catch) p.catch(() => { userPaused = true; label(); }); }
+        else v.pause();
+      };
+      v.addEventListener('play', label); v.addEventListener('pause', label);
+      btn.addEventListener('click', () => { userPaused = !v.paused; if (!userPaused) inView = true; sync(); label(); });
+      if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }, { threshold: 0.25 }).observe(v);
+      label();
+    });
+
+    const featured = $('#featured');
+    if (featured) featured.innerHTML = VT.products.filter(p => p.featured).map(showCard).join('');
+
+    // collections rail
+    const rail = $('#rail');
+    if (rail) {
+      rail.innerHTML = VT.collections.map((c, i) => {
+        const ext = /^https?:/.test(c.href);
+        return `<li class="rcard"><a href="${ext ? c.href : VT.BASE + c.href}" ${ext ? 'target="_blank" rel="noopener"' : ''}>
+          <img src="${VT.IMG + c.img}" alt="${c.alt}" loading="lazy" decoding="async">
+          <span class="rc-b"><span class="rc-n"><span class="num">${String(i + 1).padStart(2, '0')}</span></span>
+            <h3>${c.title}</h3>
+            <span class="rc-m">${c.count ? `<span class="num">${c.count}</span> פריטים בחנות האונליין` : c.note}<span aria-hidden="true"> ←</span></span>
+            ${ext ? '<span class="sr">(נפתח בחלון חדש)</span>' : ''}</span></a></li>`;
+      }).join('');
+      $$('[data-rail]').forEach(b => b.addEventListener('click', () => {
+        const step = ($('.rcard', rail) || rail).getBoundingClientRect().width + 16;
+        // RTL: "next" reveals the cards to the left
+        rail.scrollBy({ left: b.dataset.rail === 'next' ? -step : step, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }));
+    }
+
+    // fountains: cheapest, a classic, and the monumental one, straight from the price list
+    const ft = $('#fn-tags');
+    if (ft) {
+      const f = VT.fountains.slice().sort((a, b) => a.price - b.price);
+      ft.innerHTML = [f[0], f[Math.floor(f.length / 2)], f[f.length - 1]].map(x => `<li><span>${x.title}</span><b>${priceLabel(x.price)}</b></li>`).join('');
+    }
+  }
 
   /* ---------- price list ---------- */
   if (onPriceList) initPriceList();

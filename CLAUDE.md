@@ -5,6 +5,8 @@ Live: https://alonrotem1-del.github.io/villa-toscana/ (a demo: every page carrie
 
 ## Source of truth
 - `assets/js/data.js` holds every price, size, finish and image. Never type a price or size anywhere else.
+- `VT.studio` (data.js) holds the Balcony Studio: AI backdrops calibrated by hand (railing top/foot, railing height, horizon) and the shop's real product cut-outs (`px` = product height in the file at size `at`). Re-check calibration by eye with a grid overlay before adding a scene.
+- `VT.collections` feeds the home collections rail (shop photos and links).
 - Sizes use the shop's notation: the LAST number is the height in cm (`80/23/40` = length 80, width 23, height 40; `56/56` = diameter or side 56, height 56).
 - Prices are before VAT unless a size has `vat: true`.
 - `models/*.html` are GENERATED. After any change to data.js, index.html header/footer, or the model template, run:
@@ -23,7 +25,9 @@ Live: https://alonrotem1-del.github.io/villa-toscana/ (a demo: every page carrie
 - Real product photos only. AI may clean, cut out or upscale, never redraw a product; any AI-made scene is labelled beside the image.
 - Motion: CSS only (view transitions between pages, scroll-driven nudges), always inside `prefers-reduced-motion: no-preference`, and content is never hidden waiting for an animation. No WebGL heroes, no smooth-scroll libraries.
 - Accessibility: native elements first (`<dialog>` for the order list, `<button aria-pressed>` chips, native range), 24px+ targets, visible focus, skip link, `scroll-padding` for the sticky header and mobile bar. No accessibility overlay widgets.
-- Images: WebP (AVIF for the hero), lazy-load everything except the hero.
+- Images: WebP, lazy-load everything except the first screen.
+- Home is full-screen chapters (`section.scr`, CSS scroll-snap, chapter dots, scroll progress). Films (`assets/video/`, WebM + MP4, `-sm` for phones, WebP poster) play only in view, never under reduced motion or Save-Data, and always have a pause button and an AI label.
+- Studio (`studio.html`, `assets/js/studio.js`): every interaction has a non-drag path (tap item then floor, arrow keys, range inputs for calibration). The customer's photo stays on the device.
 
 ## Not done yet (only if the owner buys)
 VAT-inclusive consumer prices, accessibility statement, privacy notice, own domain with Cloudflare Pages and 301 redirects from the old URLs, email (MX) move. See the research report for details.
